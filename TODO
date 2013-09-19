@@ -1,14 +1,16 @@
-At this point, I should move this TODO into github issues, probably.
-
-Testing. Testing testing testing. Normally wouldn't for a project this size, but I want to show its use. Automated testing may've sped up development a bit, but there isn't a ton to test here.
-
 Move some of the logic from view to models.
 
 Syntax highlighting with Pygments.
 
 CSS at some point would probably be nice.
 
+#IN PROGRESS####################
+Testing. Testing testing testing. Normally wouldn't for a project this size, but I want to show its use. Automated testing may've sped up development a bit, but there isn't a ton to test here.
+
+
 #######################COMPLETED
+At this point, I should move this TODO into github issues, probably.
+
 <pre>ing the output's probably a good idea.
 
 Figure out why my redirect isn't redirecting as I think it should. - Oh, I should return that redirect. Duh. :)
