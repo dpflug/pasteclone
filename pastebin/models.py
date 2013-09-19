@@ -18,8 +18,11 @@ class Paste(models.Model):
     def save(self, *args, **kwargs):
         self.accessed = timezone.now()
         if not self.id:
-            new_id = random_id(6)
-            # Now, we should avoid collisions.
+            new_id = random_id(settings.PASTE_ID_LENGTH)
+            # Now, we should avoid collisions. This could be a problem if the
+            # hash space got filled, but this isn't going to production.
+            # I could increase hash size or change the function.
+            # Just remember to migrate if you change hash size.
             while len(Paste.objects.filter(id=new_id)) > 0:
                 new_id = random_id(settings.PASTE_ID_LENGTH)
             self.id = new_id
