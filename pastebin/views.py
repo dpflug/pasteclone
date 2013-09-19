@@ -17,7 +17,7 @@ def paste_view(request, pastehash = None):
 
         if pasteform.is_valid():
             paste = pasteform.save()
-            redirect(paste.get_absolute_url())
+            return redirect(paste.get_absolute_url())
             
     else:
         if pastehash:
@@ -26,7 +26,8 @@ def paste_view(request, pastehash = None):
             context['paste'] = paste
 
     # Let's remove some expired posts...
-    # There are better ways to do this, but I'm not running a full site.
+    # There are better ways to do this (Celery, for instance),
+    # but I'm not running a full site.
     exp_time = timezone.now() - timezone.timedelta(30)
     Paste.objects.filter(accessed__lt=exp_time).delete()
 
