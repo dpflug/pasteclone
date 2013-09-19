@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Pasteclone{% if paste.title %} - {{ paste.title }}{% endif %}</title>
+  </head>
+  <body>{% if errors %}
+    <div id="errors">
+      <ul class="error-list">{% for error in errors %}
+        <li class="error">{{ error }}</li>{% endfor %}
+      </ul>
+    </div>{% endif %}{% if paste %}
+    <h1>
+      {{ paste.title }}
+    </h1>
+    <div class="paste">
+      {{ paste.text }}
+    </div>{% else %}
+    <div class="pasteform">
+      <form method="post" id="pasteform" action="">{% csrf_token %}
+        {{ pasteform.as_p }}
+        <input type="submit" name="submit" value="Submit" />
+      </form>
+    </div>{% endif %}{% if previous_pastes %}
+    <div class="history">
+      <ul class="pastes-list">{% for p in previous_pastes %}
+        <li class="old-paste"><a href="{% url 'paste' p.id %}">"{{ p }}" on {{ p.created }}</a></li>{% endfor %}
+      </ul>
+    </div>{% endif %}
+  </body>
+</html>
