@@ -13,7 +13,9 @@
       {{ paste.title }}
     </h1>
     <div class="paste">
-      {{ paste.text }}
+      <pre>
+        {{ paste.text }}
+      </pre>
     </div>{% else %}
     <div class="pasteform">
       <form method="post" id="pasteform" action="">{% csrf_token %}
