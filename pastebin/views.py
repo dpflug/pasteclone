@@ -25,11 +25,8 @@ def paste_view(request, pastehash = None):
             paste.save()
             context['paste'] = paste
 
-    # Let's remove some expired posts...
-    # There are better ways to do this (Celery, for instance),
-    # but I'm not running a full site.
-    exp_time = timezone.now() - timezone.timedelta(30)
-    Paste.objects.filter(accessed__lt=exp_time).delete()
+    # For now, I'm going to leave the expiration here.
+    Paste.objects.remove_expired()
 
     pasteform = PasteForm()
     context['pasteform'] = pasteform
