@@ -31,6 +31,6 @@ def paste_view(request, pastehash = None):
     pasteform = PasteForm()
     context['pasteform'] = pasteform
 
-    context['previous_pastes'] = Paste.objects.all()[:10]
+    context['previous_pastes'] = Paste.objects.all()[:settings.SHOWN_RECENT_PASTES]
 
     return render(request, 'paste.html', context)

@@ -34,6 +34,9 @@ class Paste(models.Model):
         return reverse('paste',
                        kwargs={'pastehash': self.id})
 
+    def recent(self):
+        return self.objects.all()[:settings.SHOWN_RECENT_PASTES]
+
     def __str__(self):
         return self.__unicode__()
 
