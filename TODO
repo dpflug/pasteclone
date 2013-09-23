@@ -1,10 +1,10 @@
-Move some of the logic from view to models.
-
 Syntax highlighting with Pygments.
 
 CSS at some point would probably be nice.
 
 #IN PROGRESS####################
+Move some of the logic from view to models.
+
 Testing. Testing testing testing. Normally wouldn't for a project this size, but I want to show its use. Automated testing may've sped up development a bit, but there isn't a ton to test here.
 
 

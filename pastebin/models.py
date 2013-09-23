@@ -2,6 +2,7 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils import timezone
 from pastebin import settings
+from pastebin.managers import PasteManager
 from pastebin.utils import random_id
 
 class Paste(models.Model):
@@ -11,6 +12,7 @@ class Paste(models.Model):
     text = models.TextField('Text')
     created = models.DateTimeField('Creation time', default=timezone.now())
     accessed = models.DateTimeField('Last accessed time', default=timezone.now())
+    objects = PasteManager()
 
     class Meta:
         ordering = ('-created',)
@@ -31,6 +33,9 @@ class Paste(models.Model):
     def get_absolute_url(self):
         return reverse('paste',
                        kwargs={'pastehash': self.id})
+
+    def recent(self):
+        return self.objects.all()[:settings.SHOWN_RECENT_PASTES]
 
     def __str__(self):
         return self.__unicode__()
